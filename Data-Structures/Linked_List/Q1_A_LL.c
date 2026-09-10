@@ -88,9 +88,79 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+    ListNode *new_node = malloc(sizeof(ListNode));    
+    new_node->item = item;
+    new_node->next = NULL;
+
+    if (ll->head == NULL) {
+        ll->head = new_node;
+        ll->size++;
+        return 0;
+    }
+
+    if (ll->head->item > item) {
+        new_node->next = ll->head;
+        ll->head = new_node;
+        ll->size++;
+        return 0;
+    }
+    else if (ll->head->item == item) {
+        free(new_node);
+        return -1; 
+    }
+
+    ListNode *curr_node = ll->head;
+    int count = 1;
+
+    while (curr_node->next != NULL) {
+        if (curr_node->next->item == item) {
+            free(new_node);
+            return -1;
+        }
+    
+        if (curr_node->next->item > item) break;
+        
+        curr_node = curr_node->next;
+        count++;
+    }
+
+    new_node->next = curr_node->next;
+    curr_node->next = new_node;
+    ll->size++;
+
+    return count;
+}
+
+int insertSortedLL_2(LinkedList *ll, int item)
+{
+    ListNode *new_node = malloc(sizeof(ListNode));
+    new_node->item = item;
+
+    ListNode **curr = &(ll->head);
+    int count = 0;
+
+    while (*curr != NULL) {
+        if ((*curr)->item == item) {
+            free(new_node);
+            return -1;
+        }
+        
+        if ((*curr)->item > item) {
+            break;
+        }
+        
+        curr = &((*curr)->next);
+        count++;
+    }
+
+    new_node->next = *curr;
+    *curr = new_node;
+    ll->size++;
+
+    return count;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
