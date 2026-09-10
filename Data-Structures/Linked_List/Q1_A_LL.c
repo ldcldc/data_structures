@@ -148,9 +148,8 @@ int insertSortedLL_2(LinkedList *ll, int item)
             return -1;
         }
         
-        if ((*curr)->item > item) {
+        if ((*curr)->item > item)
             break;
-        }
         
         curr = &((*curr)->next);
         count++;

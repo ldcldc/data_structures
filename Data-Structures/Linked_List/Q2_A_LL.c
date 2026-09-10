@@ -59,7 +59,10 @@ int main()
 	while (c != 0)
 	{
 		printf("Please input your choice(1/2/3/0): ");
-		scanf("%d", &c);
+		if(scanf("%d", &c) != 1){
+			getchar();
+			continue;
+		}
 
 		switch (c)
 		{
@@ -103,7 +106,18 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+	ListNode *curr_1 = ll1->head, *curr_2 = ll2->head ,*temp = NULL;
+	while((curr_1 != NULL)&&(curr_2 != NULL)){
+		temp = curr_2->next;
+		curr_2->next = curr_1->next;
+		curr_1->next = curr_2;
+		
+		curr_1 = curr_2->next;
+		curr_2 = temp;
+	}
+
+	if(!curr_1 && curr_2)
+		ll2->head = curr_2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
