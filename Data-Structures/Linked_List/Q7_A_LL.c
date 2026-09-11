@@ -85,10 +85,41 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
-void RecursiveReverse(ListNode **ptrHead)
-{
-	/* add your code here */
+// ListNode* recursiveHelper(ListNode *head) {
+//     if (head == NULL || head->next == NULL) {
+//         return head;
+//     }
+//     ListNode *new_head = recursiveHelper(head->next);
+//     head->next->next = head;
+//     head->next = NULL;
+//     return new_head;
+// }
+
+// void RecursiveReverse(ListNode **ptrHead) {
+//     if (ptrHead == NULL || *ptrHead == NULL) return;
+//     *ptrHead = recursiveHelper(*ptrHead);
+// }
+
+void RecursiveReverse(ListNode **ptrHead) {
+	if(*ptrHead == NULL)
+		return;
+
+	ListNode *prev = NULL;
+	ListNode *curr = *ptrHead;
+	ListNode *next = NULL;
+
+	while((curr->next) != NULL){
+		next = curr->next;
+		
+		curr->next = prev;
+		
+		prev = curr;
+		curr = next;
+	}
+	curr->next = prev;
+	*ptrHead = curr;
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////
 
