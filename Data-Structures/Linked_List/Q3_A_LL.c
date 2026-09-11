@@ -93,18 +93,16 @@ void moveOddItemsToBack(LinkedList *ll)
 
     while (*curr != NULL) {
         if (((*curr)->item)&1) { 
-            ListNode *target = *curr;
+            ListNode *temp = *curr;
+            *curr = temp->next; 
 
-            *curr = target->next; 
-
-            *odd_tail = target;
-            odd_tail = &(target->next);
+            *odd_tail = temp;
+            odd_tail = &(temp->next);
             *odd_tail = NULL; 
         } else {
             curr = &((*curr)->next);
         }
     }
-
     *curr = odd_head;
 }
 ///////////////////////////////////////////////////////////////////////////////////
