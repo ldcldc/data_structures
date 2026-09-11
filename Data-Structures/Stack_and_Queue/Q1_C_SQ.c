@@ -116,6 +116,11 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
+
+	if(!isEmptyQueue){
+		q->ll.head = NULL;
+		q->ll.size = 0;
+	}
 	ListNode *curr = ll->head;
 	while(curr != NULL){
 		enqueue(q, curr->item);

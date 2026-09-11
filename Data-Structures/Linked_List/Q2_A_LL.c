@@ -59,10 +59,11 @@ int main()
 	while (c != 0)
 	{
 		printf("Please input your choice(1/2/3/0): ");
-		if(scanf("%d", &c) != 1){
-			getchar();
-			continue;
-		}
+        if (scanf("%d", &c) != 1) {
+            while (getchar() != '\n');
+            printf("X\n");
+            continue; 
+        }
 
 		switch (c)
 		{

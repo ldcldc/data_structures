@@ -74,8 +74,14 @@ int main()
 
 	while (c != 0)
 	{
+
 		printf("Please input your choice(1/2/0): ");
-		scanf("%d", &c);
+        
+        if (scanf("%d", &c) != 1) {
+            while (getchar() != '\n');
+            printf("X\n");
+            continue; 
+        }
 
 		switch (c)
 		{
@@ -104,7 +110,28 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+	char match[128] = {0}; 
+	match[')'] = '(';
+	match['}'] = '{';
+	match[']'] = '[';
+
+	while(*expression != '\0'){
+
+		if((peek(&s) == match[*expression])&&(s.ll.head != NULL))
+			pop(&s);
+		else
+			push(&s,*expression);
+		expression++;
+	}
+	if(isEmptyStack(&s))
+		return 0;
+	else{
+		removeAllItemsFromStack(&s);
+		return 1;
+	}
 }
 
 ////////////////////////////////////////////////////////////
