@@ -87,10 +87,43 @@ int main()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
+void inOrderHelper(BSTNode *node, Stack *s){
+	if(node == NULL)
+		return;
+
+	push(s, node);
+	inOrderHelper(node->left,s);
+	printf("%d ",pop(s)->item);
+	inOrderHelper(node->right,s);
+}
+
+void inOrderTraversal_2(BSTNode *root)
+{
+	if(root == NULL)
+		return;
+	Stack s;
+	s.top = NULL;
+	inOrderHelper(root, &s);
+}
 
 void inOrderTraversal(BSTNode *root)
 {
-	 /* add your code here */
+	if(root == NULL)
+		return;
+	Stack s;
+	s.top = NULL;
+	BSTNode *curr = root; 
+
+	while(s.top != NULL || curr != NULL)
+		if(curr != NULL){
+			push(&s, curr);
+			curr = curr->left;
+		}
+		else{
+			curr = pop(&s);
+			printf("%d ",curr->item);
+			curr = curr->right;
+		}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
