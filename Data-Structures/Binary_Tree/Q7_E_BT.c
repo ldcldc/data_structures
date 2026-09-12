@@ -100,9 +100,47 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+int smallestHelper(BTNode *node){
+    if(node == NULL)
+        return __INT_MAX__;
+    int curr = node->item;
+
+    int min_left = smallestHelper(node->left);
+    int min_right = smallestHelper(node->right);
+    int min_child =  (min_left > min_right) ? min_right : min_left;
+
+    return (min_child > curr) ? curr : min_child;
+}
+
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+    if(node == NULL)
+        return 0;
+    smallestHelper(node);
+}
+
+void smallestHelper_2(BTNode *node, int *min_val)
+{
+    if (node == NULL)
+        return;
+
+    if (node->item < *min_val)
+        *min_val = node->item;
+
+    smallestHelper_2(node->left, min_val);
+    smallestHelper_2(node->right, min_val);
+}
+
+int smallestValue_2(BTNode *node)
+{
+    if (node == NULL)
+        return 0;
+
+    int min_val = node->item; 
+
+    smallestHelper_2(node, &min_val);
+
+    return min_val;
 }
 
 //////////////////////////////////////////////////////////////////////////////////

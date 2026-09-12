@@ -103,10 +103,44 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+void printSmallerValues_2(BTNode *node, int m)
+{
+    if(node == NULL)
+        return;
+
+    if(node->item < m)
+        printf("%d ",node->item);
+	printSmallerValues(node->left,m);
+    printSmallerValues(node->right,m);
+}
+
+#include <stdio.h>
+
+void printSmallerHelper(BTNode *node, int m, int *is_first)
+{
+    if (node == NULL)
+        return;
+
+    if (node->item < m){
+        if (*is_first == 1){
+            printf("%d", node->item);
+            *is_first = 0; 
+        } else
+            printf(", %d", node->item);
+    }
+
+    printSmallerHelper(node->left, m, is_first);
+    printSmallerHelper(node->right, m, is_first);
+}
+
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+    int is_first = 1;
+    printSmallerHelper(node, m, &is_first);
+    printf("\n"); 
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////
 
