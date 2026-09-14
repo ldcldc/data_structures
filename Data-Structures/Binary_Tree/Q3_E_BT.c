@@ -112,7 +112,7 @@ int countOneChildNodes(BTNode *node)
 
     while(s.top != NULL){
         curr = pop(&s);
-        if((curr->left == NULL)^(curr->right == NULL))
+        if((curr->left == NULL)!=(curr->right == NULL))
             count++;
 
         if(curr->left != NULL)

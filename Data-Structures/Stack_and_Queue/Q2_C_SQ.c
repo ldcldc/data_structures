@@ -113,11 +113,8 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-	if(!isEmptyStack){
-		s->ll.head = NULL;
-		s->ll.size = 0;
-	}
-
+	if(!isEmptyStack)
+		removeAllItemsFromStack(s);
 
 	if(ll->head == NULL)
 		return;

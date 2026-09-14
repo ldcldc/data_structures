@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 6 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -114,17 +115,15 @@ void printSmallerValues_2(BTNode *node, int m)
     printSmallerValues(node->right,m);
 }
 
-#include <stdio.h>
-
-void printSmallerHelper(BTNode *node, int m, int *is_first)
+void printSmallerHelper(BTNode *node, int m, bool *is_first)
 {
     if (node == NULL)
         return;
 
     if (node->item < m){
-        if (*is_first == 1){
+        if (*is_first){
             printf("%d", node->item);
-            *is_first = 0; 
+            *is_first = false; 
         } else
             printf(", %d", node->item);
     }
@@ -135,12 +134,10 @@ void printSmallerHelper(BTNode *node, int m, int *is_first)
 
 void printSmallerValues(BTNode *node, int m)
 {
-    int is_first = 1;
+    bool is_first = true;
     printSmallerHelper(node, m, &is_first);
     printf("\n"); 
 }
-
-
 
 //////////////////////////////////////////////////////////////////////////////////
 

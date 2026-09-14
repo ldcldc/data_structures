@@ -106,7 +106,6 @@ int maxHeight(BTNode *node)
     return (left_max > right_max ? left_max : right_max) + 1;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////
 
 BTNode *createBTNode(int item){

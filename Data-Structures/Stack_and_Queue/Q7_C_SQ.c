@@ -108,6 +108,14 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
+
+char get_match(char c) {
+    if (c == ')') return '(';
+    if (c == '}') return '{';
+    if (c == ']') return '[';
+    return '\0';
+}
+
 int balanced(char *expression)
 {
 	Stack s;
@@ -117,7 +125,7 @@ int balanced(char *expression)
 	match[')'] = '(';
 	match['}'] = '{';
 	match[']'] = '[';
-
+	
 	while(*expression != '\0'){
 
 		if((peek(&s) == match[*expression])&&(s.ll.head != NULL))
