@@ -127,8 +127,6 @@ void reverse(Queue *q)
 	while (count--)
 		enqueue(q,pop(&s)); 
 
-	if(!isEmptyStack)
-		removeAllItems(&s.ll);
 	return;
 }
 

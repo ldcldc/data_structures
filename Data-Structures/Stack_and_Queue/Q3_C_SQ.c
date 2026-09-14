@@ -9,6 +9,7 @@ Purpose: Implementing the required functions for Question 3 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdbool.h>
 
 //////////////////////////////////   linked list /////////////////////////////////
 
@@ -100,14 +101,15 @@ int main()
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-
 int isStackPairwiseConsecutive(Stack *s)
 {
+
+	bool a;
   	if(((s->ll.size)&1) || s == NULL)
 		return 0;
 	ListNode *curr = s->ll.head;
 	while(curr != NULL){
-		if(!((curr->item - curr->next->item == 1)||(curr->item - curr->next->item == -1)))
+		if(!(abs(curr->item - curr->next->item)))
 			return 0;
 		curr = curr->next->next;
 	}
